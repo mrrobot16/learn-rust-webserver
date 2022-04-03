@@ -19,7 +19,7 @@ fn init() {
     
     let listener = TcpListener::bind(url).unwrap();
     
-    let pool = ThreadPool::new(10);
+    let pool = ThreadPool::new(4);
     
     for (index, stream) in listener.incoming().enumerate() {
         let stream = stream.unwrap();
@@ -35,6 +35,7 @@ fn init() {
             // handle_connection_sleep(stream);
         // });
     }
+    println!("Shutting down.");
 }
 
 fn handle_connection_with_sleep(mut stream: TcpStream) {
